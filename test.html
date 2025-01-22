@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Curve Scroll Animation</title>
+    <style>
+        body {
+            margin: 0;
+            height: 2000px; /* For scrollable content */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .moving-image {
+            position: absolute;
+            width: 100px; /* Adjust size as needed */
+            height: auto;
+            will-change: transform;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://via.placeholder.com/100" alt="Moving Image" class="moving-image">
+    </div>
+    <script>
+        function customCurve(scrollPosition) {
+            // Adjust these values to change the curve
+            const a = 0.2; // Horizontal scaling factor
+            const b = 1; // Vertical scaling factor
+            const c = 0.02; // Frequency of the curve
+            const d = 200;  // Amplitude of the curve
+
+            // Applying a custom cubic Bézier-like curve
+            const x = scrollPosition * a;
+            const y = Math.sin(scrollPosition * c) * d * b;
+
+            return { x, y };
+        }
+
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const image = document.querySelector('.moving-image');
+
+            // Get custom curve position
+            const { x, y } = customCurve(scrollPosition);
+
+            image.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+</body>
+</html>
