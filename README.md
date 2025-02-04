@@ -1,4 +1,4 @@
-# THE WORKOUT DIRECTORY
+# THE WORKOUT DIRECTORY Version 1
 
 ### Go to [www.theworkoutdirectory.com](https://theworkoutdirectory.com/)
 
